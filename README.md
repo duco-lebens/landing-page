@@ -1,13 +1,10 @@
 # Landing Page Project
 
-## Table of Contents
+Simple project displaying beginner javascript skills
 
-* [Instructions](#instructions)
-
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+Added functionality to the template:
+- a menu is generated from the html code
+- page scrolls to the section selected via the menu
+- the in view section becomes 'active' ie gets another backgroud color
+- after 5 seconds (more or less) of inactivity, the menu dissappears
+- scrolling will reset the timeout for menu disappearance
