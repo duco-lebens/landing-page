@@ -127,7 +127,7 @@ function givefocus2section() {
 
             // and we have to check again if the previous one is in already view
             // but only if we aren't at the top
-            if (currentSection >0 ) {
+            if (currentSection > 0 ) {
                 if (isElementInViewport(actual_sections[currentSection - 1])){
                     // set the new active one
                     currentSection = currentSection - 1;
