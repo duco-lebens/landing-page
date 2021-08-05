@@ -60,19 +60,13 @@ function createULMenuItem() {
 
 // courtesy of Dan in https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
 function isElementInViewport (el) {
-
-    // Special bonus for those using jQuery
-    if (typeof jQuery === "function" && el instanceof jQuery) {
-        el = el[0];
-    }
-
     var rect = el.getBoundingClientRect();
 
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)       /* or $(window).width() */
     );
 }
 
@@ -107,14 +101,17 @@ function givefocus2section() {
             menu_items[currentSection].classList.remove('active');
 
             // and we have to check again if the next one is in already view
-            if (isElementInViewport(actual_sections[currentSection + 1])){
-                // set the currentsection
-                currentSection = currentSection + 1;
+            // but only if there is another section
+            if (currentSection <= lastSection) {
+                if (isElementInViewport(actual_sections[currentSection + 1])){
+                    // set the currentsection
+                    currentSection = currentSection + 1;
                 
-                // add the class
-                actual_sections[currentSection].classList.add('your-active-class');
-                menu_items[currentSection].classList.add('active');
-                // note that if this section currently is not in view, neither sections will have been highlighted
+                    // add the class
+                    actual_sections[currentSection].classList.add('your-active-class');
+                    menu_items[currentSection].classList.add('active');
+                    // note that if this section currently is not in view, neither sections will have been highlighted
+                }
             }
         }
     } else {
@@ -129,14 +126,17 @@ function givefocus2section() {
             menu_items[currentSection].classList.remove('active');
 
             // and we have to check again if the previous one is in already view
-            if (isElementInViewport(actual_sections[currentSection - 1])){
-                // set the new active one
-                currentSection = currentSection - 1;
+            // but only if we aren't at the top
+            if (currentSection >0 ) {
+                if (isElementInViewport(actual_sections[currentSection - 1])){
+                    // set the new active one
+                    currentSection = currentSection - 1;
 
-                // add the class
-                actual_sections[currentSection].classList.add('your-active-class');
-                menu_items[currentSection].classList.add('active');
-                // note that if this section currently is not in view, neither sections will have been highlighted
+                    // add the class
+                    actual_sections[currentSection].classList.add('your-active-class');
+                    menu_items[currentSection].classList.add('active');
+                    // note that if this section currently is not in view, neither sections will have been highlighted
+                }
             }
         }
     }
