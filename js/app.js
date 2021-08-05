@@ -102,7 +102,7 @@ function givefocus2section() {
 
             // and we have to check again if the next one is in already view
             // but only if there is another section
-            if (currentSection <= lastSection) {
+            if (currentSection < lastSection) {
                 if (isElementInViewport(actual_sections[currentSection + 1])){
                     // set the currentsection
                     currentSection = currentSection + 1;
