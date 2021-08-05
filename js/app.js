@@ -28,7 +28,7 @@ let i = 0;
 let directionUP = false;
 let scrollPos = 0;  // initial scroll direction state
 let currentSection = 0;
-let lastSection = actual_sections.length;
+let lastSection = actual_sections.length- 1; // we count from 0
 let timeoutvalue = 5000;
 
 /**
