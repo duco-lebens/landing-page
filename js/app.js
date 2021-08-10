@@ -48,13 +48,13 @@ function createULMenuItem() {
         tempListItem = document.createElement('li');
         
         // lets put it in HTML so the DOM can display it
-        tempListItem.innerHTML = `<a class='menu__link' href='#${menu_section_link}'>${menu_section_name}</a>`;
+        tempListItem.innerHTML = `<a class='menu__link' href='javascript:void(0)' onclick='myclickFunction(${menu_section_link})'>${menu_section_name}</a>`;
 
         // and add it to the document
         main_menu.appendChild(tempListItem);
     }
 
-    // now the ul items are al there; put them in a helper array for later use
+    // now the ul items are all there; put them in a helper array for later use
     menu_items = Array.from(document.getElementsByClassName('menu__link'));
 }
 
@@ -145,6 +145,15 @@ function givefocus2section() {
         document.getElementById('navbar__list').style.display='none';
     }, timeoutvalue );
 }
+
+// lets gently scroll the section into view
+function myclickFunction(el){
+    let sec = document.getElementById(el.id);
+    sec.scrollIntoView();
+    return false;
+}
+
+
 
 /**
  * End Helper Functions
