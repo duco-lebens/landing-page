@@ -8,3 +8,6 @@ Added functionality to the template:
 - the 'in view' section becomes 'active' ie gets another background color
 - after 5 seconds (more or less) of inactivity, the menu disappears
 - scrolling will reset the timeout for menu disappearance
+
+
+dillinger.io
