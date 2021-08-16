@@ -60,7 +60,7 @@ function createULMenuItem() {
 
 // courtesy of Dan in https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
 function isElementInViewport (el) {
-    var rect = el.getBoundingClientRect();
+    let rect = el.getBoundingClientRect();
 
     return (
         rect.top >= 0 &&
