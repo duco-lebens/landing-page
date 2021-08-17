@@ -30,6 +30,7 @@ let scrollPos = 0;  // initial scroll direction state
 let currentSection = 0;
 let lastSection = actual_sections.length- 1; // we count from 0
 let timeoutvalue = 5000;
+let nHandle = -1;
 
 /**
  * End Global Variables
@@ -76,8 +77,15 @@ function givefocus2section() {
     // unhide menu when hidden through time-out
     if (document.getElementById('navbar__list').style.display=='none'){
         document.getElementById('navbar__list').style.display='block';
-        timeoutvalue = 5000;
-    };
+    }
+    
+    // reset the timer
+    if (nHandle) { clearTimeout( nHandle); }
+        
+    // activate hide and seek
+    nHandle = setTimeout( function() {
+            document.getElementById('navbar__list').style.display='none';
+        }, timeoutvalue );
 
     // detects new scrolled state and compares it with the previous one
     if ((document.body.getBoundingClientRect()).top > scrollPos)
@@ -140,10 +148,6 @@ function givefocus2section() {
             }
         }
     }
-    // activate hide and seek
-    setTimeout( function() {
-        document.getElementById('navbar__list').style.display='none';
-    }, timeoutvalue );
 }
 
 // lets gently scroll the section into view
@@ -152,8 +156,6 @@ function myclickFunction(el){
     sec.scrollIntoView();
     return false;
 }
-
-
 
 /**
  * End Helper Functions
@@ -178,3 +180,4 @@ document.getElementById("topofpage").scrollIntoView();
 // Set sections as active
 document.addEventListener('scroll', givefocus2section );
 
+// eof
