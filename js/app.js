@@ -59,16 +59,10 @@ function createULMenuItem() {
     menu_items = Array.from(document.getElementsByClassName('menu__link'));
 }
 
-// courtesy of Dan in https://stackoverflow.com/questions/123999/how-can-i-tell-if-a-dom-element-is-visible-in-the-current-viewport/7557433#7557433
+// courtesy of Udacity blog
 function isElementInViewport (el) {
     let rect = el.getBoundingClientRect();
-
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)       /* or $(window).width() */
-    );
+    return( rect.top <= 150 && rect.bottom >= 150 );
 }
 
 // give the active 'in view' section focus when scrolled to
@@ -79,10 +73,10 @@ function givefocus2section() {
         document.getElementById('navbar__list').style.display='block';
     }
     
-    // reset the timer
+    // reset the timer when active
     if (nHandle) { clearTimeout( nHandle); }
         
-    // activate hide and seek
+    // activate hide and seek (again)
     nHandle = setTimeout( function() {
             document.getElementById('navbar__list').style.display='none';
         }, timeoutvalue );
@@ -93,7 +87,7 @@ function givefocus2section() {
     else
        directionUP = false;
 
-    // saves the new position for iteration.
+    // saves the new position for iteration
     scrollPos = (document.body.getBoundingClientRect()).top;
 
     // so we know the page starts allways at section 1 (no persistent cookie stuff just yet)
@@ -108,7 +102,7 @@ function givefocus2section() {
             actual_sections[currentSection].classList.remove('your-active-class');
             menu_items[currentSection].classList.remove('active');
 
-            // and we have to check again if the next one is in already view
+            // and we have to check again if the next one is already in view
             // but only if there is another section
             if (currentSection < lastSection) {
                 if (isElementInViewport(actual_sections[currentSection + 1])){
@@ -119,7 +113,7 @@ function givefocus2section() {
                     actual_sections[currentSection].classList.add('your-active-class');
                     menu_items[currentSection].classList.add('active');
                     // note that if this section currently is not in view, neither sections will have been highlighted
-                }
+                } 
             }
         }
     } else {
@@ -133,7 +127,7 @@ function givefocus2section() {
             actual_sections[currentSection].classList.remove('your-active-class');
             menu_items[currentSection].classList.remove('active');
 
-            // and we have to check again if the previous one is in already view
+            // and we have to check again if the previous one is already in view
             // but only if we aren't at the top
             if (currentSection > 0 ) {
                 if (isElementInViewport(actual_sections[currentSection - 1])){
@@ -152,9 +146,10 @@ function givefocus2section() {
 
 // lets gently scroll the section into view
 function myclickFunction(el){
-    let sec = document.getElementById(el.id);
-    sec.scrollIntoView();
-    return false;
+  document.getElementById(el.id).scrollIntoView({ 
+    behavior: 'smooth'
+  });
+  return false;
 }
 
 /**
@@ -168,8 +163,6 @@ createULMenuItem();
 
 // Scroll to (anchor ID) using scrollTO event
 document.getElementById("topofpage").scrollIntoView();
-
-// also used the scroll-behaviour 'smooth' in the css file
 
 /**
  * End Main Functions
